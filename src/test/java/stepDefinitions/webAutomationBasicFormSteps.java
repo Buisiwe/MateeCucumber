@@ -1,4 +1,4 @@
-package StepDefinitions;
+package stepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -69,7 +69,7 @@ public class webAutomationBasicFormSteps extends Base {
 
     @Then("the form is successfully submitted")
     public void the_form_is_successfully_submitted() {
-        String actualValue = webAutomationBasicFormPage.getFormSubmissionSuccessMessage();
+        String actualValue = webAutomationBasicFormPage.getSubmitSuccessMessage();
         System.out.println("Actual form submission success message: " + actualValue);
          String expectedValue = "Form submitted successfully!";
         System.out.println("Expected form submission success message: " + expectedValue);
