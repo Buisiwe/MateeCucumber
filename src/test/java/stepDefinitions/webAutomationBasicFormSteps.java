@@ -16,6 +16,8 @@ public class webAutomationBasicFormSteps extends Base {
         webAutomationBasicFormPage.navLearnMenu();
     }
 
+    /* Duplicate
+
     @And("user navigates to the Web Automation Basic Form page")
     public void user_navigates_to_the_web_automation_basic_form_page() {
         webAutomationBasicFormPage.selectLearningMaterialDropdown();
@@ -24,7 +26,7 @@ public class webAutomationBasicFormSteps extends Base {
     @And("the user enters full name {}")
     public void i_enter_my_full_name(String fullName) {
         webAutomationBasicFormPage.enterFullName(fullName);
-    }
+    } */
 
     @And("the user enters email {}")
     public void i_enter_my_email_address(String emailAddress) {
