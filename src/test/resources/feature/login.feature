@@ -1,4 +1,4 @@
-Feature: User Login
+ Feature: User Login
   As a registered user I want to login to Ndosi landing page so i can access my learning materials.
 
   Scenario Outline: sign up to register new user account
