@@ -11,10 +11,12 @@ import java.time.Duration;
 public class WebAutomationBasicFormPage {
     WebDriver driver;
 
-    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[1]/button/span[3]")
+    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[1]/button/span[2]")
     WebElement navLearnMenuButtonXpath;
-    @FindBy(xpath = "//button[2]/span[2]")
+    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[2]/div[1]/div/button[2]/span[2]")
     WebElement navLearningMaterialDropdownXpath;
+    @FindBy(xpath = "//*[@id=\"tab-btn-password\"]/span[2]")
+    WebElement navWebAutomationBasicFormButtonXpath;
     @FindBy(id = "name")
     WebElement FullNameFieldId;
     @FindBy(id = "email")
@@ -27,11 +29,11 @@ public class WebAutomationBasicFormPage {
     WebElement selectCountryDropdownId;
     @FindBy(id = "experience")
     WebElement selectExperienceDropdownId;
-    @FindBy(xpath = "//*[@id=\"practice-form\"]/div[2]/label")
-    WebElement checkboxForSkillsXpath;
+    @FindBy(id = "skill-selenium")
+    WebElement checkboxForSkillsID;
     @FindBy(id = "comments")
     WebElement addCommentsId;
-    @FindBy(xpath = "//*[@id=\"practice-form\"]/div[3]/label[2]")
+    @FindBy(xpath = "//*[@id='practice-form']/div[3]//input[@type='checkbox']")
     WebElement termsAndConditionsCheckboxXpath;
     @FindBy(id = "submit-btn")
     WebElement submitFormButtonFieldId;
@@ -46,11 +48,18 @@ public class WebAutomationBasicFormPage {
     public WebAutomationBasicFormPage(WebDriver driver) {this.driver = driver;}
 
     public void navLearnMenu() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(navLearnMenuButtonXpath));
         navLearnMenuButtonXpath.click();
     }
 
     public void selectLearningMaterialDropdown() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(navLearningMaterialDropdownXpath));
         navLearningMaterialDropdownXpath.click();
+    }
+
+    public void clickNavWebAutomationBasicFormButton() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(navWebAutomationBasicFormButtonXpath));
+        navWebAutomationBasicFormButtonXpath.click();
     }
 
     public void enterFullName(String fullName) {
@@ -77,16 +86,23 @@ public class WebAutomationBasicFormPage {
         selectExperienceDropdownId.sendKeys(experience);
     }
 
+
     public void clickCheckboxForSkills() {
-        checkboxForSkillsXpath.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(checkboxForSkillsID));
+
     }
 
     public void addComments(String comments) {
         addCommentsId.sendKeys(comments);
     }
 
+
     public void clickTermsAndConditionsCheckbox() {
-        termsAndConditionsCheckboxXpath.click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(termsAndConditionsCheckboxXpath));
+        if (!termsAndConditionsCheckboxXpath.isSelected()) {
+            termsAndConditionsCheckboxXpath.click();
+        }
     }
 
     public void clickSubmitFormButton() {

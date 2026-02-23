@@ -5,7 +5,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Base;
+
+import java.time.Duration;
 
 public class webAutomationBasicFormSteps extends Base {
 
@@ -20,9 +24,9 @@ public class webAutomationBasicFormSteps extends Base {
         loginPage.enterUsername("mpydf5dm1z@example.com");
         loginPage.enterPassword("@SecurePass123");
         loginPage.clickLoginButton();
-
-
-        loginPage.clickNavWebAutomationBasicFormButton();
+        webAutomationBasicFormPage.navLearnMenu();
+        webAutomationBasicFormPage.selectLearningMaterialDropdown();
+        webAutomationBasicFormPage.clickNavWebAutomationBasicFormButton();
     }
 
     @When("user navigates to the Web Automation Basic Form page")
@@ -30,6 +34,10 @@ public class webAutomationBasicFormSteps extends Base {
         webAutomationBasicFormPage.navLearnMenu();
     }
 
+    @And("the user enters full name {}")
+    public void i_enter_my_full_name(String fullName) {
+        webAutomationBasicFormPage.enterFullName(fullName);
+    }
 
     @And("the user enters email {}")
     public void i_enter_my_email_address(String emailAddress) {
@@ -56,7 +64,7 @@ public class webAutomationBasicFormSteps extends Base {
         webAutomationBasicFormPage.selectExperience(experience);
     }
 
-    @And("the user selects the programming language {}")
+    @And("the user selects the programming language skill {}")
     public void i_check_the_checkbox_for_skills() {
         webAutomationBasicFormPage.clickCheckboxForSkills();
     }

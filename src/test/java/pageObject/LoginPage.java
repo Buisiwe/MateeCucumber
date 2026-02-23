@@ -21,8 +21,6 @@ public class LoginPage {
     WebElement loginButtonId;
     @FindBy(xpath = "//h2[contains(text(),'Welcome back, ')]")
     WebElement verifyLoginIsSuccessfullyXpath;
-    @FindBy(xpath = "//div[@class='nav-menu']//a[contains(text(),'Web Automation Basic Form')]")
-    WebElement navWebAutomationBasicFormButtonXpath;
     @FindBy(xpath = "//*[@id=\"app-main-content\"]/section/div[1]/h2")
     WebElement welcomeTextXpath;
 
@@ -50,11 +48,6 @@ public class LoginPage {
 
     public void getLoginSuccessMessage() {
        welcomeTextXpath.isDisplayed();
-    }
-
-    public void clickNavWebAutomationBasicFormButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(navWebAutomationBasicFormButtonXpath));
-        navWebAutomationBasicFormButtonXpath.click();
     }
 
 }
