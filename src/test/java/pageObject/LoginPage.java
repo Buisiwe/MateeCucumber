@@ -23,6 +23,8 @@ public class LoginPage {
     WebElement verifyLoginIsSuccessfullyXpath;
     @FindBy(xpath = "//div[@class='nav-menu']//a[contains(text(),'Web Automation Basic Form')]")
     WebElement navWebAutomationBasicFormButtonXpath;
+    @FindBy(xpath = "//*[@id=\"app-main-content\"]/section/div[1]/h2")
+    WebElement welcomeTextXpath;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -46,13 +48,13 @@ public class LoginPage {
         loginButtonId.click();
     }
 
-    public String getLoginSuccessMessage() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(verifyLoginIsSuccessfullyXpath));
-        return verifyLoginIsSuccessfullyXpath.getText();
+    public void getLoginSuccessMessage() {
+       welcomeTextXpath.isDisplayed();
     }
 
     public void clickNavWebAutomationBasicFormButton() {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(navWebAutomationBasicFormButtonXpath));
         navWebAutomationBasicFormButtonXpath.click();
     }
+
 }

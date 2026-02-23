@@ -4,29 +4,32 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 import utils.Base;
 
 public class webAutomationBasicFormSteps extends Base {
+
+    public WebDriver driver;
+
+    public webAutomationBasicFormSteps() {
+        this.driver = super.driver;
+    }
     @Given("the user is on the learning menu page")
     public void i_am_on_the_web_automation_basic_form_page() {
+        loginPage.clickNavLoginButton();
+        loginPage.enterUsername("mpydf5dm1z@example.com");
+        loginPage.enterPassword("@SecurePass123");
+        loginPage.clickLoginButton();
+
+
         loginPage.clickNavWebAutomationBasicFormButton();
     }
+
     @When("user navigates to the Web Automation Basic Form page")
     public void i_fill_out_the_form_with_valid_data() {
         webAutomationBasicFormPage.navLearnMenu();
     }
 
-    /* Duplicate
-
-    @And("user navigates to the Web Automation Basic Form page")
-    public void user_navigates_to_the_web_automation_basic_form_page() {
-        webAutomationBasicFormPage.selectLearningMaterialDropdown();
-    }
-
-    @And("the user enters full name {}")
-    public void i_enter_my_full_name(String fullName) {
-        webAutomationBasicFormPage.enterFullName(fullName);
-    } */
 
     @And("the user enters email {}")
     public void i_enter_my_email_address(String emailAddress) {
