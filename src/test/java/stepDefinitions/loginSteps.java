@@ -38,7 +38,7 @@ public class loginSteps extends Base {
 
     @Then("the user is successfully logged in")
     public void the_user_is_successfully_logged_in() {
-       loginPage.getLoginSuccessMessage();
+       loginPage.getLoginSuccessMessage("Welcome back, admin! \uD83D\uDC4B");
 
     }
 }

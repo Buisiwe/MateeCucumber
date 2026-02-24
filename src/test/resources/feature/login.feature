@@ -9,6 +9,6 @@ Feature: User Login
     Then the user is successfully logged in
 
     Examples:
-      | email                  | password       |
-      | mpydf5dm1z@example.com | @SecurePass123 |
+      | email           | password  |
+      | admin@gmail.com | @12345678 |
 

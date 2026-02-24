@@ -65,17 +65,20 @@ public class webAutomationBasicFormSteps extends Base {
     }
 
     @And("the user selects the programming language skill {}")
-    public void i_check_the_checkbox_for_skills() {
-        webAutomationBasicFormPage.clickCheckboxForSkills();
+    public void i_check_the_checkbox_for_skills(String skillName) {
+        webAutomationBasicFormPage.clickCheckboxForSkills(skillName);
     }
 
     @And("the user add comments {}")
     public void i_add_comments(String comments) {
-        webAutomationBasicFormPage.addComments(comments);}
+        webAutomationBasicFormPage.addComments(comments);
+    }
 
-    @And("the user check the terms and conditions checkbox or subscribe to the newsletter")
-    public void i_check_the_terms_and_conditions_checkbox() {
-        webAutomationBasicFormPage.clickTermsAndConditionsCheckbox();}
+    @And("the user check the terms and conditions checkbox or subscribe to the newsletter {}")
+    public void i_check_the_terms_and_conditions_checkbox(String termsAndConditions) {
+        webAutomationBasicFormPage.clickTermsAndConditionsCheckbox(termsAndConditions);
+    }
+
     @And("the user click the submit form button or reset the form button or validate the form button")
     public void i_click_the_submit_form_button() {
         webAutomationBasicFormPage.clickSubmitFormButton() ; }

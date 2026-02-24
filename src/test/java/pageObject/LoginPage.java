@@ -46,7 +46,14 @@ public class LoginPage {
         loginButtonId.click();
     }
 
-    public void getLoginSuccessMessage() {
+    public void getLoginSuccessMessage(String expectedMessage) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(verifyLoginIsSuccessfullyXpath));
+        String actualMessage = verifyLoginIsSuccessfullyXpath.getText();
+        if (actualMessage.equals(expectedMessage)) {
+            System.out.println("Login successful: " + actualMessage);
+        } else {
+            System.out.println("Login failed. Expected: " + expectedMessage + ", but got: " + actualMessage);
+        }
        welcomeTextXpath.isDisplayed();
     }
 

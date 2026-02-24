@@ -1,5 +1,6 @@
 package pageObject;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,8 +30,8 @@ public class WebAutomationBasicFormPage {
     WebElement selectCountryDropdownId;
     @FindBy(id = "experience")
     WebElement selectExperienceDropdownId;
-    @FindBy(id = "skill-selenium")
-    WebElement checkboxForSkillsID;
+    @FindBy(xpath = "//*[@id='practice-form']/div[3]//input[@type='checkbox']")
+    WebElement checkboxForSkillsPath;
     @FindBy(id = "comments")
     WebElement addCommentsId;
     @FindBy(xpath = "//*[@id='practice-form']/div[3]//input[@type='checkbox']")
@@ -87,10 +88,9 @@ public class WebAutomationBasicFormPage {
     }
 
 
-    public void clickCheckboxForSkills() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(checkboxForSkillsID));
-
+    public void clickCheckboxForSkills(String skillName) {
+        driver.findElement(By.xpath("//*[@id='skill-" + skillName.toLowerCase() + "']")).click();
+        //checkboxForSkillsPath.isSelected();
     }
 
     public void addComments(String comments) {
@@ -98,12 +98,15 @@ public class WebAutomationBasicFormPage {
     }
 
 
-    public void clickTermsAndConditionsCheckbox() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(termsAndConditionsCheckboxXpath));
-        if (!termsAndConditionsCheckboxXpath.isSelected()) {
-            termsAndConditionsCheckboxXpath.click();
-        }
+    public void clickTermsAndConditionsCheckbox(String termsAndConditions) {
+        driver.findElement(By.xpath("//*[@id='terms-" + termsAndConditions.toLowerCase() + "']")).click();
+       // termsAndConditionsCheckboxXpath.isSelected();
+//        By locator = By.id("terms-" + termsAndConditions.toLowerCase());
+//        new WebDriverWait(driver, Duration.ofSeconds(10))
+//                .until(ExpectedConditions.elementToBeClickable(locator));
+//        driver.findElement(locator).click();
     }
+
 
     public void clickSubmitFormButton() {
         submitFormButtonFieldId.click();
