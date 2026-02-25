@@ -15,3 +15,4 @@ public class Base {
     public WebAutomationBasicFormPage webAutomationBasicFormPage = PageFactory.initElements(driver, WebAutomationBasicFormPage.class);
     public AdminApprovePage adminApprovePage = PageFactory.initElements(driver, AdminApprovePage.class);
 }
+

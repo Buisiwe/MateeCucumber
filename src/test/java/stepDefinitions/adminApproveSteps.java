@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,6 +9,7 @@ import utils.Base;
 
 public class adminApproveSteps extends Base {
     public WebDriver driver;
+    private String currentUserEmail;
 
     public adminApproveSteps() {
         this.driver = super.driver;
@@ -15,54 +17,74 @@ public class adminApproveSteps extends Base {
 
     @Given("the admin is logged in")
     public void the_admin_is_logged_in() {
-        // Assuming the admin is already logged in, you can add code here to verify the login status if needed.
-        // For example, you could check for the presence of an element that is only visible to logged-in admins.
-        // Alternatively, you could perform the login steps here if the admin is not already logged in.
-        // Example:
         loginPage.clickNavLoginButton();
         loginPage.enterUsername("admin@gmail.com");
         loginPage.enterPassword("@12345678");
         loginPage.clickLoginButton();
         loginPage.getLoginSuccessMessage("Welcome back, admin! \uD83D\uDC4B");
         adminApprovePage.clickAdminMenuButton();
-        // Then you can add an assertion to verify that the admin is logged in successfully.
-        //String successMessage = loginPage.getLoginSuccessMessage("Welcome back, admin! \uD83D\uDC4B");
-        //assert successMessage != null : "Admin login was not successful";
     }
 
-    @When("the admin clicks on admin panel")
+    @And("the admin is on the admin panel")
     public void the_admin_clicks_on_admin_panel() {
         adminApprovePage.clickAdminPanelButton();
     }
 
-    @When("the admin clicks on the approval button")
+    @When("the admin clicks on the \"Approval\" button")
     public void the_admin_clicks_on_the_approval_button() {
-        adminApprovePage.clickApproveButton();
+        adminApprovePage.clickApprovalButton();
     }
 
-    @When("the admin search for the email by entering {}in the search field")
+    @And("the admin searches for the email {} in the search field")
     public void the_admin_search_for_the_email_by_entering_email_in_the_search_field(String userEmail) {
+        this.currentUserEmail = userEmail;
         adminApprovePage.searchRegisteredUser(userEmail);
+        //System.out.println("Searched for user with email: " + userEmail);
     }
 
-    @When("the admin tick a checkbox next to the email in the search result")
-    public void the_admin_tick_a_checkbox_next_to_the_email_in_the_search_result(String userEmail) {
-        adminApprovePage.clickSelectUserCheckbox(userEmail);
-    }
-
-    @When("the admin clicks on approve button")
+    @And("the admin clicks on the \"Approve\" button")
     public void the_admin_clicks_on_approve_button() {
         adminApprovePage.clickApproveSelectedUserButton();
+        System.out.println("Clicked on the Approve button for the user with email: " + currentUserEmail);
     }
 
-    @When("the new user account is successfully approved")
+    @Then("the new user account should be successfully approved")
     public void the_new_user_account_with_email_is_successfully_approved() {
-        //adminApprovePage.getApprovalSuccessMessage("User approved successfully!");
+        String actualMessage = adminApprovePage.getApprovalSuccessMessage();
+        String expectedMessage = "User approved successfully!";
+        System.out.println("Actual registration success message: " + actualMessage);
+        adminApprovePage.getApprovalSuccessMessage();
     }
 
-    @Then("the admin click back to website button")
-    public void the_admin_click_back_to_website_button() {
+    @When("the admin navigates to the \"Users\" section on the admin panel")
+    public void the_admin_navigates_to_the_users_section_on_the_admin_panel() {
+        adminApprovePage.clickUsersSectionButton();
+        adminApprovePage.clickRoleMenuButton();
+    }
 
+    @And("the admin changes the user role to \"Admin\"")
+    public void the_admin_changes_the_user_role_to_admin() {
+        adminApprovePage.changeUserRoleToAdmin();
+    }
+
+    @And("the user role should be updated successfully")
+    public void the_user_role_should_be_updated_successfully() {
+        String actualMessage = adminApprovePage.getRoleUpdateSuccessMessage();
+        String expectedMessage = "User role updated to \"admin\" successfully!";
+        System.out.println("Actual registration success message: " + actualMessage);
+        adminApprovePage.getRoleUpdateSuccessMessage();
+    }
+
+    @When("the admin clicks on the \"Back to Website\" button")
+    public void the_admin_click_back_to_website_button() {
+        adminApprovePage.clickBackToWebsiteButton();
+    }
+
+    @Then("the admin should be redirected to the landing page and log out")
+    public void the_admin_is_redirected_to_the_landing_page_and_logged_out() {
+        //String currentUrl = driver.getCurrentUrl();
+        //assert currentUrl.equals("https://sbuda-frontend.vercel.app/") : "Admin was not redirected to the landing page";
+        adminApprovePage.clickLogoutButton();
     }
 
 }
