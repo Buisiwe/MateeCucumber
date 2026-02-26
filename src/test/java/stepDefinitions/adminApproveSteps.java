@@ -9,7 +9,6 @@ import utils.Base;
 
 public class adminApproveSteps extends Base {
     public WebDriver driver;
-    private String currentUserEmail;
 
     public adminApproveSteps() {
         this.driver = super.driver;
@@ -17,6 +16,7 @@ public class adminApproveSteps extends Base {
 
     @Given("the admin is logged in")
     public void the_admin_is_logged_in() {
+        //registerUserPage.signUpLink();
         loginPage.clickNavLoginButton();
         loginPage.enterUsername("admin@gmail.com");
         loginPage.enterPassword("@12345678");
@@ -35,17 +35,16 @@ public class adminApproveSteps extends Base {
         adminApprovePage.clickApprovalButton();
     }
 
-    @And("the admin searches for the email {} in the search field")
+    @And("the admin searches for the email {string} in the search field")
     public void the_admin_search_for_the_email_by_entering_email_in_the_search_field(String userEmail) {
-        this.currentUserEmail = userEmail;
         adminApprovePage.searchRegisteredUser(userEmail);
-        //System.out.println("Searched for user with email: " + userEmail);
+        System.out.println("Searched for user with email: " + userEmail);
     }
 
     @And("the admin clicks on the \"Approve\" button")
     public void the_admin_clicks_on_approve_button() {
         adminApprovePage.clickApproveSelectedUserButton();
-        System.out.println("Clicked on the Approve button for the user with email: " + currentUserEmail);
+        //System.out.println("Clicked on the Approve button for the user with email: " + currentUserEmail);
     }
 
     @Then("the new user account should be successfully approved")
@@ -59,12 +58,18 @@ public class adminApproveSteps extends Base {
     @When("the admin navigates to the \"Users\" section on the admin panel")
     public void the_admin_navigates_to_the_users_section_on_the_admin_panel() {
         adminApprovePage.clickUsersSectionButton();
-        adminApprovePage.clickRoleMenuButton();
+
+    }
+    @And("the admin searches for the same email {string} in the search field")
+    public void the_admin_search_for_the_same_email_in_the_search_field(String userEmail) {
+        adminApprovePage.searchApprovedUser(userEmail);
+        System.out.println("Searched for user with email: " + userEmail);
     }
 
     @And("the admin changes the user role to \"Admin\"")
     public void the_admin_changes_the_user_role_to_admin() {
-        adminApprovePage.changeUserRoleToAdmin();
+        adminApprovePage.clickRoleMenuButton();
+        adminApprovePage.selectAdminRoleFromDropdown();
     }
 
     @And("the user role should be updated successfully")

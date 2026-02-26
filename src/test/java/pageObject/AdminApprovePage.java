@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -30,12 +31,14 @@ public class AdminApprovePage {
     WebElement logoutButtonXpath;
     @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[2]/nav/button[2]")
     WebElement usersSectionButtonXpath;
-    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[2]/table/tbody/tr[5]/td[4]/select")
+    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[2]/table/tbody/tr/td[4]/select")
     WebElement changeRoleButton;
-    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[2]/table/tbody/tr[4]/td[4]/select")
+    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[2]/table/tbody/tr/td[4]/select")
     WebElement changeRoleToAdminOption;
     @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[2]/table/tbody/tr[5]/td[4]/select")
     WebElement roleUpdateSuccessMessageXpath;
+    @FindBy(xpath = "//*[@id=\"app-root\"]/div/div[3]/div/div[1]/div[2]/input")
+    WebElement searchApprovedUserXpath;
 
     public AdminApprovePage(WebDriver driver) {
         this.driver = driver;
@@ -59,49 +62,43 @@ public class AdminApprovePage {
     }
 
     public void searchRegisteredUser(String email) {
-        new WebDriverWait(driver, Duration.ofSeconds(1000)).until(ExpectedConditions.visibilityOf(searchUserFieldXpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(searchUserFieldXpath));
         searchUserFieldXpath.sendKeys(email);
     }
 
-
     public void clickApproveSelectedUserButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.elementToBeClickable(approveSelectedUserButtonXpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(approveSelectedUserButtonXpath));
         approveSelectedUserButtonXpath.click();
+        System.out.println("approveSelectedUserButtonXpath");
     }
 
-//    public String getApprovalSuccessMessage() {
-//        new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.visibilityOf(approvalSuccessMessageXpath));
-//        //String actualMessage = verifyLoginIsSuccessfullyXpath.getText();
-////      if (actualMessage.equals(expectedMessage)) {
-////            System.out.println("Login successful: " + actualMessage);
-////        } else {
-////            System.out.println("Login failed. Expected: " + expectedMessage + ", but got: " + actualMessage);
-////        }
-//        approvalSuccessMessageXpath.isDisplayed();
-////        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(approvalSuccessMessageXpath));
-//        return approvalSuccessMessageXpath.getText();
-//
-//    }
-public String getApprovalSuccessMessage() {
-    new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(approvalSuccessMessageXpath));
-    return approvalSuccessMessageXpath.getText();
-}
+    public String getApprovalSuccessMessage() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(approvalSuccessMessageXpath));
+        return approvalSuccessMessageXpath.getText();
+    }
 
-    public void clickUsersSectionButton(){
+    public void clickUsersSectionButton() {
         new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.visibilityOf(usersSectionButtonXpath));
         usersSectionButtonXpath.click();
     }
 
+    public void searchApprovedUser(String email) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(searchApprovedUserXpath));
+        searchApprovedUserXpath.sendKeys(email);
+    }
+
+
     public void clickRoleMenuButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.visibilityOf(changeRoleToAdminOption));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(changeRoleToAdminOption));
         changeRoleToAdminOption.click();
     }
 
-    public void changeUserRoleToAdmin(){
-
-        changeRoleButton.click();
+    public void selectAdminRoleFromDropdown() {
+        WebElement dropdown = driver.findElement(By.xpath("//*[@id=\"app-root\"]/div/div[3]/div/div[2]/table/tbody/tr/td[4]/select"));
+        Select select = new Select(dropdown);
+        select.selectByVisibleText("Admin");
+        //changeRoleToAdminOption.click();
     }
-
     public String getRoleUpdateSuccessMessage() {
         new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.visibilityOf(roleUpdateSuccessMessageXpath));
         return roleUpdateSuccessMessageXpath.getText();
@@ -117,7 +114,6 @@ public String getApprovalSuccessMessage() {
         new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.elementToBeClickable(logoutButtonXpath));
         logoutButtonXpath.click();
     }
-
 
 
 }

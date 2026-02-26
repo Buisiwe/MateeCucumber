@@ -26,16 +26,7 @@ public class RegisterSteps extends Base {
         registerUserPage.signUpLink();
     }
 
-    /*@When("the user enters registration details {} {} {} {} {} {}")
-    public void the_user_enters_registration_details(String firstName, String lastName, String email, String password, String confirmPassword, String group) throws InterruptedException {
-        registerUserPage.registrationHeading();
-        registerUserPage.enterFirstName(firstName);
-        registerUserPage.enterLastName(lastName);
-        registerUserPage.enterEmail(email);
-        registerUserPage.enterPassword(password);
-        registerUserPage.enterConfirmPassword(confirmPassword);
-        registerUserPage.selectGroup(group);
-    }*/
+
     @And("the user enters first name{}")
     public void the_user_enters_first_name(String firstName) throws InterruptedException {
         registerUserPage.enterFirstName(firstName);

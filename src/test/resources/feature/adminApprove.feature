@@ -9,7 +9,7 @@ Feature: Admin approves new user account
     Then the new user account should be successfully approved
 
     When the admin navigates to the "Users" section on the admin panel
-    And the admin searches for the email "<email>" in the search field
+    And the admin searches for the same email "<email>" in the search field
     And the admin changes the user role to "Admin"
     Then the user role should be updated successfully
 
@@ -18,4 +18,4 @@ Feature: Admin approves new user account
 
     Examples:
       | email             |
-      | jmat2@gmail.com   |
+      | jmat1@gmail.com   |
