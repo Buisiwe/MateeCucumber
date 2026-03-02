@@ -2,10 +2,7 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pageObject.LoginPage;
-import pageObject.RegisterUserPage;
-import pageObject.WebAutomationBasicFormPage;
-import pageObject.AdminApprovePage;
+import pageObject.*;
 
 public class Base {
     BrowserFactory browserFactory = new BrowserFactory();
@@ -14,5 +11,6 @@ public class Base {
     public LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
     public WebAutomationBasicFormPage webAutomationBasicFormPage = PageFactory.initElements(driver, WebAutomationBasicFormPage.class);
     public AdminApprovePage adminApprovePage = PageFactory.initElements(driver, AdminApprovePage.class);
+    public NewUserPage newUserPage = PageFactory.initElements(driver, NewUserPage.class);
 }
 
