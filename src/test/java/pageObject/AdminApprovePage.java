@@ -1,5 +1,6 @@
 package pageObject;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -100,26 +102,24 @@ public class AdminApprovePage {
 //        select.selectByVisibleText("Admin");
 //        changeRoleButton.click();
 //    }
-public void selectAdminRoleFromDropdown() {
-    WebElement roleDropdown = driver.findElement(By.xpath("//select[contains(@class,'role-dropdown')]"));
-    WebElement dropdown = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(roleDropdown));
-    //new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(dropdown));
-    Select select = new Select(dropdown);
-    select.selectByVisibleText("Admin");
-    //changeRoleButton.click();
-    //changeRoleToAdminOption.click();
-//    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//
-//    WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
-//            By.xpath("//*[@id='app-root']/div/div[3]/div/div[2]/table/tbody/tr[1]/td[4]/select")
-//    ));
-//
-//    Select select = new Select(dropdown);
-//    select.selectByVisibleText("Admin"); // Select directly by visible text
-//
-//    changeRoleToAdminOption.click(); // Click only if this is required after selection
-//    System.out.println(changeRoleButton);
-}
+
+    public void selectAdminRole() {
+        WebElement roleDropdown = driver.findElement(
+                By.xpath("//select[option[normalize-space()='👑 Admin']]")
+        );
+
+        Select select = new Select(roleDropdown);
+        select.selectByVisibleText("👑 Admin");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // Wait until the alert is present
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+        // Accept (close) the alert
+        alert.accept();
+    }
+
+
     public String getRoleUpdateSuccessMessage() {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(roleUpdateSuccessMessageXpath));
         return roleUpdateSuccessMessageXpath.getText();

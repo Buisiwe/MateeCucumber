@@ -68,8 +68,9 @@ public class adminApproveSteps extends Base {
 
     @And("the admin changes the user role to \"Admin\"")
     public void the_admin_changes_the_user_role_to_admin() {
-        adminApprovePage.clickRoleMenuButton();
-        adminApprovePage.selectAdminRoleFromDropdown();
+        //adminApprovePage.clickRoleMenuButton();
+        //adminApprovePage.selectAdminRoleFromDropdown();
+        adminApprovePage.selectAdminRole();
     }
 
     @And("the user role should be updated successfully")

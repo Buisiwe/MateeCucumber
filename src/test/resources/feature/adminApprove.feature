@@ -17,5 +17,5 @@ Feature: Admin approves new user account
     Then the admin should be redirected to the landing page and log out
 
     Examples:
-      | email             |
-      | jmat1@gmail.com   |
+      | email              |
+      | jmatest7@gmail.com |
