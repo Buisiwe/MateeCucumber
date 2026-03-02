@@ -45,19 +45,19 @@ public class AdminApprovePage {
     }
 
     public void clickAdminMenuButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.visibilityOf(adminMenuButtonXpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(adminMenuButtonXpath));
         adminMenuButtonXpath.click();
 
 
     }
 
     public void clickAdminPanelButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.visibilityOf(adminPanelButtonXpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(adminPanelButtonXpath));
         adminPanelButtonXpath.click();
     }
 
     public void clickApprovalButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(10000)).until(ExpectedConditions.visibilityOf(approveButtonXpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(approveButtonXpath));
         approveButtonXpath.click();
     }
 
@@ -78,7 +78,7 @@ public class AdminApprovePage {
     }
 
     public void clickUsersSectionButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.visibilityOf(usersSectionButtonXpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(usersSectionButtonXpath));
         usersSectionButtonXpath.click();
     }
 
@@ -93,25 +93,46 @@ public class AdminApprovePage {
         changeRoleToAdminOption.click();
     }
 
-    public void selectAdminRoleFromDropdown() {
-        WebElement dropdown = driver.findElement(By.xpath("//*[@id=\"app-root\"]/div/div[3]/div/div[2]/table/tbody/tr/td[4]/select"));
-        Select select = new Select(dropdown);
-        select.selectByVisibleText("Admin");
-        //changeRoleToAdminOption.click();
-    }
+//    public void selectAdminRoleFromDropdown() {
+//        WebElement dropdown = driver.findElement(By.xpath("//*[@id=\"app-root\"]/div/div[3]/div/div[2]/table/tbody/tr[1]/td[4]/select"));
+//        Select select = new Select(dropdown);
+//        select.selectByIndex(2);
+//        select.selectByVisibleText("Admin");
+//        changeRoleButton.click();
+//    }
+public void selectAdminRoleFromDropdown() {
+    WebElement roleDropdown = driver.findElement(By.xpath("//select[contains(@class,'role-dropdown')]"));
+    WebElement dropdown = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(roleDropdown));
+    //new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(dropdown));
+    Select select = new Select(dropdown);
+    select.selectByVisibleText("Admin");
+    //changeRoleButton.click();
+    //changeRoleToAdminOption.click();
+//    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//
+//    WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
+//            By.xpath("//*[@id='app-root']/div/div[3]/div/div[2]/table/tbody/tr[1]/td[4]/select")
+//    ));
+//
+//    Select select = new Select(dropdown);
+//    select.selectByVisibleText("Admin"); // Select directly by visible text
+//
+//    changeRoleToAdminOption.click(); // Click only if this is required after selection
+//    System.out.println(changeRoleButton);
+}
     public String getRoleUpdateSuccessMessage() {
-        new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.visibilityOf(roleUpdateSuccessMessageXpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(roleUpdateSuccessMessageXpath));
         return roleUpdateSuccessMessageXpath.getText();
 
     }
 
     public void clickBackToWebsiteButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.elementToBeClickable(backToWebsiteButtonXpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(backToWebsiteButtonXpath));
         backToWebsiteButtonXpath.click();
     }
 
     public void clickLogoutButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.elementToBeClickable(logoutButtonXpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(logoutButtonXpath));
         logoutButtonXpath.click();
     }
 

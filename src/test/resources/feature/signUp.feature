@@ -14,4 +14,4 @@ Feature: User Sing Up, As a user I want to register on the ndosi website to be a
 
     Examples:
       | firstName | lastName | email          | password  | confirmPassword | group                 |
-      | Josey     | Matee    | jmat1@gmail.com | @12345678 | @12345678       | 1st Group 2026 (2026) |
+      | Josey     | Matee    | jmat7@gmail.com | @12345678 | @12345678       | 1st Group 2026 (2026) |
