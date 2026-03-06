@@ -7,12 +7,19 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pageObject.RegisterUserPage;
 import utils.Base;
+import utils.UserDataStore;
 
 public class RegisterSteps extends Base {
     public WebDriver driver;
+    private UserDataStore userDataStore;
+    private String currentEmail;
+    private String currentFirstName;
+    private String currentLastName;
+    private String currentPassword;
 
     public RegisterSteps() {
         this.driver = super.driver;
+        this.userDataStore = UserDataStore.getInstance();
     }
 
     @Given("the user clicks on login button on the landing page")
@@ -29,20 +36,25 @@ public class RegisterSteps extends Base {
 
     @And("the user enters first name{}")
     public void the_user_enters_first_name(String firstName) throws InterruptedException {
+        this.currentFirstName = firstName;
         registerUserPage.enterFirstName(firstName);
     }
 
     @And("the user enters last name {}")
     public void the_user_enters_last_name(String lastName) throws InterruptedException {
-        registerUserPage.enterLastName(lastName);   }
+        this.currentLastName = lastName;
+        registerUserPage.enterLastName(lastName);
+    }
 
     @And("the user enters register email {}")
     public void the_user_enters_email(String email) throws InterruptedException {
+        this.currentEmail = email;
         registerUserPage.enterEmail(email);
     }
 
     @And("the user enters register password {}")
     public void the_user_enters_password(String password) throws InterruptedException {
+        this.currentPassword = password;
         registerUserPage.enterPassword(password);
     }
 
@@ -67,6 +79,14 @@ public class RegisterSteps extends Base {
         String actualMessage = registerUserPage.getRegistrationSuccessMessage();
         String expectedMessage = "Registration successful! Please check your email to verify your account.";
         System.out.println("Actual registration success message: " + actualMessage);
+
+        // Store the registered user's data for use in subsequent scenarios
+        userDataStore.setRegisteredUserEmail(currentEmail);
+        userDataStore.setRegisteredFirstName(currentFirstName);
+        userDataStore.setRegisteredLastName(currentLastName);
+        userDataStore.setRegisteredPassword(currentPassword);
+
+        System.out.println("✓ User registration stored - Email: " + currentEmail);
     }
 
 }

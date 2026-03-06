@@ -8,5 +8,5 @@ Feature: A new user account is approved and the role is updated to Admin by the 
     Then the new user is successfully logged in
 
     Examples:
-      | email          | password  |
-      | jmat1@gmail.com | @12345678 |
+      | email           | password  |
+      | jmat3@gmail.com | @12345678 |
