@@ -12,6 +12,13 @@ target/
 *.iws
 *.iml
 *.ipr
+*src/test/java/stepDefinitions/Listener.java
+*ADMIN_APPROVE_IMPROVEMENTS.md
+*ADMIN_APPROVE_QUICK_FIX.md
+*ADMIN_APPROVE_VISUAL_SUMMARY.md
+*DELIVERABLES.md
+*BEFORE_AFTER_COMPARISON.md
+*DOCUMENTATION_INDEX.md
 
 ### Eclipse ###
 .apt_generated
