@@ -18,4 +18,4 @@ Feature: Admin approves new user account
 
     Examples:
       | email           |
-      | jmat3@gmail.com |
+      | jmat4@gmail.com |

@@ -9,4 +9,4 @@ Feature: A new user account is approved and the role is updated to Admin by the 
 
     Examples:
       | email           | password  |
-      | jmat3@gmail.com | @12345678 |
+      | jmat4@gmail.com | @12345678 |
