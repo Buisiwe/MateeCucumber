@@ -17,34 +17,6 @@
 ////        dryRun = false
 ////)
 //public class TestRunner extends AbstractTestNGCucumberTests {
-//
-//    private void runCucumber(String s) {
-//    }
-//@Test(priority = 0)
-//    public void runCucumberTests() {
-//
-//        runSignUpFeature();
-//        runLoginFeature();
-//        runAdminApproveFeature();
-//        runNewUserLoginFeature();
-//    }
-//
-//    public void runSignUpFeature() {
-//        runCucumber("src/test/resources/feature/signUp.feature");
-//    }
-//
-//
-//    public void runLoginFeature() {
-//        runCucumber("src/test/resources/feature/login.feature");
-//    }
-//
-//    public void runAdminApproveFeature() {
-//        runCucumber("src/test/resources/feature/adminApprove.feature");
-//    }
-//
-//    public void runNewUserLoginFeature() {
-//        runCucumber("src/test/resources/feature/newUserLogin.feature");
-//    }
 //}
 
 package runner;
@@ -52,6 +24,7 @@ package runner;
 import io.cucumber.core.cli.Main;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.Test;
+import utils.hooks;
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 
@@ -60,7 +33,10 @@ public class TestRunner extends AbstractTestNGCucumberTests {
         Main.run(new String[]{
                 "--glue", "stepDefinitions",
                 "--plugin", "pretty",
+                "--plugin", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
                 "--plugin", "html:target/cucumber-reports.html",
+                "--plugin","json:target/cucumber.json",
+                "--plugin","junit:target/cucumber.xml",
                 featurePath
         }, Thread.currentThread().getContextClassLoader());
     }
@@ -72,7 +48,12 @@ public class TestRunner extends AbstractTestNGCucumberTests {
         runLoginFeature();
         runAdminApproveFeature();
         runNewUserLoginFeature();
+//        hookScreenshotAfterEachStep();
     }
+
+//    private void hookScreenshotAfterEachStep() {
+//        hooks.
+//    }
 
     public void runSignUpFeature() {
         runCucumber("src/test/resources/feature/signUp.feature");

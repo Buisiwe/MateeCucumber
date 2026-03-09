@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pageObject.NewUserPage;
 import utils.Base;
+import utils.UserDataStore;
 
 public class newUserSteps extends Base {
     public WebDriver driver;
@@ -19,10 +20,12 @@ public class newUserSteps extends Base {
     }
     @When("the new user enters valid email {}")
     public void the_new_user_enters_valid_email(String email) {
+        //email = UserDataStore.getRegisteredUserEmail();
         newUserPage.enterUsername(email);
     }
     @When("the new user enters valid password {}")
     public void the_new_user_enters_valid_password(String password) {
+        //password = UserDataStore.getRegisteredUserPassword();
        newUserPage.enterPassword(password);
     }
     @When("the new user click the login button")

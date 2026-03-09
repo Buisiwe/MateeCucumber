@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import utils.Base;
+import utils.UserDataStore;
 
 public class adminApproveSteps extends Base {
     public WebDriver driver;
@@ -37,6 +38,7 @@ public class adminApproveSteps extends Base {
 
     @And("the admin searches for the email {string} in the search field")
     public void the_admin_search_for_the_email_by_entering_email_in_the_search_field(String userEmail) {
+        //userEmail = UserDataStore.getRegisteredUserEmail();
         adminApprovePage.searchRegisteredUser(userEmail);
         System.out.println("Searched for user with email: " + userEmail);
     }

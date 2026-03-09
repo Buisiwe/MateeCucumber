@@ -85,7 +85,6 @@ public class RegisterUserPage {
         WebElement dropdown = driver.findElement(By.id("register-group"));
         Select select = new Select(dropdown);
         select.selectByVisibleText(group);
-
     }
 
     public void clickRegisterSubmitButton() {
